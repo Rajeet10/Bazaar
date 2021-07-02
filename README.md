@@ -2,6 +2,6 @@ Bazaar
 ----------------------------------
 Nepal Online Shopping App
 ----------------------------------
-Find the products you want to buy online
+Find the products you want to buy online 
 ------------------------------------
-Cheaper,Flexible,Faster And Easier
+Cheaper, Flexible, Faster And Easier!!!
