@@ -18,7 +18,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../screens/user/UserProductsScreen";
-import EditProductScreen from "../screens/user/EditProductScreen";
+import EditProductScreen,{screenOptions as editProductScreenOptions} from "../screens/user/EditProductScreen";
 
 
 const defaultNavOptions = {
@@ -84,7 +84,7 @@ const AdminNavigator = () => {
       <AdminStackNavigator.Screen
         name="EditProducts"
         component={EditProductScreen}
-        // options={userProductsScreenOptions}
+        options={editProductScreenOptions}
       />
     </AdminStackNavigator.Navigator>
   );
