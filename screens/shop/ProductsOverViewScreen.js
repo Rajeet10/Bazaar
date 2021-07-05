@@ -31,23 +31,27 @@ const ProductsOverviewScreen=props=>{
     />
 };
 
-ProductsOverviewScreen.navigationOptions=navData=>{
+export const screenOptions=navData=>{
     return{
         headerTitle:'All Products',
-        // headerLeft:()=>(
-        //     <HeaderButtons HeaderButtonComponent={HeaderButton}>
-        //         <Item
-        //         title={Platform.OS==='android' ? 'md-menu' :'ios-menu'}
-        //         onPress={()=>{
-        //             navData.navigation.toggleDrawer();
-        //         }}
-        //         />
+        headerLeft:()=>(
+            <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                <Item
+                title="Cart"
+                iconName={Platform.OS==='android' ? 'md-menu' :'ios-menu'}
+                onPress={()=>{
+                    navData.navigation.toggleDrawer();
+                }}
+                />
 
-        //     </HeaderButtons>
-        // ),
+            </HeaderButtons>
+        ),
         headerRight:()=>(
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item title="Cart" iconName={Platform.OS==='android' ? 'md-cart' :'ios-cart'} onPress={()=>{
+            <Item 
+            title="Cart"
+             iconName={Platform.OS==='android' ? 'md-cart' :'ios-cart'} 
+             onPress={()=>{
                 navData.navigation.navigate('Cart'); 
             }}/>
         </HeaderButtons>

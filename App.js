@@ -1,5 +1,4 @@
 import React,{useState} from 'react';
-import {  Text, View } from 'react-native';
 import {createStore,combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import productsReducer from './store/reducers/Products';
@@ -41,7 +40,7 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-      <ShopNavigator></ShopNavigator>
+      <ShopNavigator/>
     </Provider>
   );
 }

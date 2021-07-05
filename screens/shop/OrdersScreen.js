@@ -1,8 +1,9 @@
 import React from 'react';
-import {View,Text,FlatList,StyleSheet,Platform} from 'react-native';
+import {Text,FlatList,StyleSheet,Platform} from 'react-native';
 import {useSelector} from 'react-redux';
 import {HeaderButtons,Item} from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
+
 
 const OrdersScreen = (props)=>{
       const orders=useSelector(state=>state.orders.orders);
@@ -17,16 +18,22 @@ const OrdersScreen = (props)=>{
 };
 
 const styles=StyleSheet.create({
+    centered: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+      }
 
 });
 
-OrdersScreen.navigationOptions=navData=>{
+export const screenOptions=navData=>{
     return{
         headerTitle:'Your Orders',
         headerLeft:()=>(
             <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
-                title={Platform.OS==='android' ? 'md-menu' :'ios-menu'}
+                title="Menu"
+                iconName={Platform.OS==='android' ? 'md-menu' :'ios-menu'}
                 onPress={()=>{
                     navData.navigation.toggleDrawer();
                 }}

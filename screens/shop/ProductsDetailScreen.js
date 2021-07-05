@@ -6,7 +6,8 @@ import * as cartActions from '../../store/actions/Cart';
 
 
 const ProductDetailScreen=props=>{
-    const productId=props.navigation.getParam('productId');
+    // const productId=props.navigation.getParam('productId');
+    const productId=props.route.params.productId;
     const selectedProduct=useSelector(state=>state.products.availableProducts.find(prod=>prod.id===productId));
 
     const dispatch=useDispatch();
@@ -58,9 +59,10 @@ actions:{
 }
 });
 
-ProductDetailScreen.navigationOptions=navData=>{
+export const screenOptions=navData=>{
 return{
-    headerTitle:navData.navigation.getParam('productTitle')
+    // headerTitle:navData.navigation.getParam('productTitle')
+    headerTitle:navData.route.params.productTitle
 };
 }
 
