@@ -4,6 +4,7 @@ import { HeaderButtons,Item } from 'react-navigation-header-buttons';
 import HeaderButton from '../../components/UI/HeaderButton';
 import { useSelector } from "react-redux";
 
+
 const EditProductScreen = (props) => {
     const prodId=props.route.params ? props.route.params.productId : null;
     const editedProduct=useSelector(state=>
@@ -13,12 +14,12 @@ const EditProductScreen = (props) => {
     const [imageUrl, setImageUrl] = useState(editedProduct?editedProduct.imageUrl:'');
     const [price, setPrice] = useState('');
     const [description, setDescription] = useState(editedProduct?editedProduct.description:'');
-    // const submitHandler=useCallback(()=>{
-    //     console.log('submitting');
-    // },[]);
-    // useEffect(()=>{
-    //     props.navigation.setParams({submit:submitHandler});
-    // },[submitHandler])
+    const submitHandler=useCallback(()=>{
+        console.log('submitting');
+    },[]);
+    useEffect(()=>{
+        props.navigation.setParams({submit:submitHandler});
+    },[submitHandler])
     
   return (
     <ScrollView>
@@ -58,7 +59,7 @@ const EditProductScreen = (props) => {
   );
 };
 export const screenOptions=navData=>{
-    // const submitFn=navData.route.params.submit;
+    const submitFn=navData.route.params.submit;
     return{
         headerTitle:navData.route.params.productId ? 'Edit Product' :'Add Product',
         headerRight:()=>(
@@ -67,7 +68,9 @@ export const screenOptions=navData=>{
             title="Save"
             iconName={
                 Platform.OS === 'android' ? 'md-checkmark' : 'ios-checkmark'}
-            onPress={()=>{}}
+            onPress={
+                submitFn
+            }
           />
         </HeaderButtons>
         )
