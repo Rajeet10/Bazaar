@@ -18,6 +18,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../screens/user/UserProductsScreen";
+import EditProductScreen from "../screens/user/EditProductScreen";
 
 
 const defaultNavOptions = {
@@ -31,28 +32,6 @@ const defaultNavOptions = {
   },
 };
 
-// const ProductsNavigator=createStackNavigator({
-// ProductsOverView:ProductsOverviewScreen,
-// ProductDetail:ProductDetailScreen,
-// Cart:CartScreen,
-// },{
-//     defaultNavigationOptions:defaultNavOptions
-// });
-
-// const OrdersNavigator=createStackNavigator({
-//     Orders:OrdersScreen
-// },{
-//     defaultNavigationOptions:defaultNavOptions
-// });
-
-// const ShopNavigator=createDrawerNavigator({
-// Products:ProductsNavigator,
-// Orders:OrdersNavigator
-// },{
-//     contentOptions:{
-//          activeTintColor:Colors.primary
-//     }
-// });
 
 const ProductStackNavigator = createStackNavigator();
 
@@ -98,9 +77,14 @@ const AdminNavigator = () => {
   return (
     <AdminStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <AdminStackNavigator.Screen
-        name="userProducts"
+        name="UserProducts"
         component={UserProductsScreen}
         options={userProductsScreenOptions}
+      />
+      <AdminStackNavigator.Screen
+        name="EditProducts"
+        component={EditProductScreen}
+        // options={userProductsScreenOptions}
       />
     </AdminStackNavigator.Navigator>
   );
