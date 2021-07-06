@@ -1,5 +1,5 @@
 import React,{useReducer,useEffect} from 'react';
-import {Text,View,StyleSheet} from 'react-native';
+import {Text,View,StyleSheet,TextInput} from 'react-native';
 
 const INPUT_CHANGE='INPUT_CHANGE';
 const INPUT_BLUR='INPUT_BLUR';
@@ -20,7 +20,7 @@ const inputReducer=(state,action)=>{
     default:
         return state;
     }
-}
+};
 
 const Input = props=>{
     const [inputState,dispatch]=useReducer(inputReducer,{
@@ -39,8 +39,8 @@ const Input = props=>{
     },[inputState,onInputChange,id]);
 
 
-    const textChangeChangeHandler=text=>{
-        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s+)*)|(".+")       )@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])[a-zA-Z\-0-9]+\.)+   [a-zA-Z]{2,}))$/;
+    const textChangeHandler = text => {
+        const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         let isValid = true;
         if (props.required && text.trim().length === 0) {
           isValid = false;
@@ -57,11 +57,11 @@ const Input = props=>{
         if (props.minLength != null && text.length < props.minLength) {
           isValid = false;
         }
-
-        dispatch({type:INPUT_CHANGE,value:text,isValid:isValid});
-    };
+        dispatch({ type: INPUT_CHANGE, value: text, isValid: isValid });
+      };
+    
     const lostFocusHandler=()=>{
-        dispatch({type:INPUT_BLUR})
+        dispatch({type:INPUT_BLUR });
     };
     return(
         <View style={styles.formControl}>
@@ -70,11 +70,14 @@ const Input = props=>{
         {...props }
         style={styles.input} 
         value={inputState.value} 
-        onChangeText={textChangeChangeHandler}
+        onChangeText={textChangeHandler}
         onBlur={lostFocusHandler}
         />
-        {!inputState.isValid && 
-        <Text>{props.errorText}</Text>}
+        {!inputState.isValid && inputState.touched && (
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{props.errorText}</Text>
+        </View>
+      )}
       </View>
     );  
     
@@ -94,6 +97,14 @@ const styles=StyleSheet.create({
         borderBottomColor:'#ccc',
         borderBottomWidth:1
     },
+    errorContainer: {
+        marginVertical: 5
+      },
+      errorText: {
+        fontFamily: 'open-sans',
+        color: 'red',
+        fontSize: 13
+      }
 });
 
 export default Input;
