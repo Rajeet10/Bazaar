@@ -132,7 +132,7 @@ const EditProductScreen = (props) => {
           label="Image Url"
           errorText="Please enter a valid image url!"
           keyboardType="default"
-          returnKeyType="next"
+          returnKeyType='next'
           onInputChange={inputChangeHandler}
           initialValue={editedProduct ? editedProduct.imageUrl : ''}
           initiallyValid={!!editedProduct}
