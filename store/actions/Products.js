@@ -58,10 +58,15 @@ export const updateProduct=(id,title,description,imageUrl)=>{
 
  export const fetchProducts=()=>{
      return async dispatch=>{
+        
         //async code
-      const response=await  fetch('https://bazaar-316b7-default-rtdb.firebaseio.com/products.json'
+        try{
+            const response=await  fetch('https://bazaar-316b7-default-rtdb.firebaseio.com/products.json'
             // method:'GET',//default and no need of headers and body
       );
+      if(!response.ok){
+          throw new Error('Something went wrong!');
+      }
         const resData=await response.json();
         // console.log(resData);
         const loadedProducts=[];
@@ -77,5 +82,11 @@ export const updateProduct=(id,title,description,imageUrl)=>{
             );
         }
          dispatch({type:SET_PRODUCTS,products:loadedProducts})
-     };
+        }
+        catch(err){
+            //send to custom analytics error
+            throw err;
+        }
+      
+     } 
  };
