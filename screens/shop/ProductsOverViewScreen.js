@@ -17,6 +17,7 @@ const ProductsOverviewScreen=props=>{
     const dispatch=useDispatch();
 
     const loadProducts=useCallback(async()=>{
+        console.log('lll');
         setError(null);
         setIsLoading(true);
         try{
@@ -26,6 +27,16 @@ const ProductsOverviewScreen=props=>{
         }   
         setIsLoading(false);       
         },[dispatch,setIsLoading,setError]);
+
+        useEffect(()=>{
+            const unsubscribe = props.navigation.addListener('focus', loadProducts);
+
+
+            return ()=>{
+                unsubscribe();
+            }
+        },[loadProducts]);
+        
 
     useEffect(()=>{
         loadProducts();
