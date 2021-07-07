@@ -8,13 +8,14 @@ import  AppLoading from 'expo-app-loading';
 import cartReducer from './store/reducers/Cart';
 import ordersReducer from './store/reducers/orders';
 import ReduxThunk from 'redux-thunk';
-
+import authReducer from './store/reducers/auth';
 
 
 const rootReducer=combineReducers({
   products:productsReducer,
   cart:cartReducer,
-  orders:ordersReducer
+  orders:ordersReducer,
+  auth:authReducer
 });
 const store=createStore(rootReducer,applyMiddleware(ReduxThunk));
 

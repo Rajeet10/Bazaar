@@ -21,6 +21,7 @@ import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../
 import EditProductScreen,{screenOptions as editProductScreenOptions} from "../screens/user/EditProductScreen";
 import { createSwitchNavigator } from "react-navigation";
 import AuthScreen,{screenOptions as authScreenOptions} from "../screens/user/AuthScreen";
+import { createAppContainer } from "react-navigation";
 
 
 
@@ -158,7 +159,10 @@ const Authnavigator=()=>{
 
 const MainNavigator=createSwitchNavigator({
   Auth:Authnavigator,
-  Shop:ShopNavigator
+  Shop:ShopNavigator,
+  
+},{
+  initialRouteName:"Auth"
 });
 
 export default ShopNavigator;
