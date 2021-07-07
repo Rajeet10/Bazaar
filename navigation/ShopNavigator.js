@@ -19,6 +19,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../screens/user/UserProductsScreen";
 import EditProductScreen,{screenOptions as editProductScreenOptions} from "../screens/user/EditProductScreen";
+import { createSwitchNavigator } from "react-navigation";
+import AuthScreen from "../screens/user/AuthScreen";
+import { createAppContainer } from "react-navigation";
 
 
 const defaultNavOptions = {
@@ -141,5 +144,25 @@ const ShopNavigator = () => {
     </NavigationContainer>
   );
 };
+const AuthStackNavigator=createStackNavigator();
+
+const Authnavigator=()=>{
+  return(
+    <AuthStackNavigator.Navigator screenOptions={defaultNavOptions}>
+      <AuthStackNavigator.Screen
+      name="Auth"
+      component={AuthScreen}
+      // options={}
+      />
+    </AuthStackNavigator.Navigator>
+  );
+}
+
+const MainNavigator=createSwitchNavigator({
+  Auth:Authnavigator,
+  Shop:ShopNavigator
+});
 
 export default ShopNavigator;
+// export default createAppContainer(MainNavigator); 
+// export default MainNavigator;
