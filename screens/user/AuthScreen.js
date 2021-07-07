@@ -60,7 +60,7 @@ const AuthScreen = props=>{
          );
         }else{
             action=
-            (authActions.signup(
+            (authActions.login(
                 formState.inputValues.email,
                 formState.inputValues.password
                 )
