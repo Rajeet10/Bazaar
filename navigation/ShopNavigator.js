@@ -20,8 +20,8 @@ import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../screens/user/UserProductsScreen";
 import EditProductScreen,{screenOptions as editProductScreenOptions} from "../screens/user/EditProductScreen";
 import { createSwitchNavigator } from "react-navigation";
-import AuthScreen from "../screens/user/AuthScreen";
-import { createAppContainer } from "react-navigation";
+import AuthScreen,{screenOptions as authScreenOptions} from "../screens/user/AuthScreen";
+
 
 
 const defaultNavOptions = {
@@ -40,7 +40,6 @@ const ProductStackNavigator = createStackNavigator();
 
 const ProductsNavigator = () => {
   return (
-    // <NavigationContainer>
       <ProductStackNavigator.Navigator screenOptions={defaultNavOptions}>
         <ProductStackNavigator.Screen
           name="ProductsOverView"
@@ -58,7 +57,6 @@ const ProductsNavigator = () => {
           options={cartScreenOptions}
         />
       </ProductStackNavigator.Navigator>
-    // </NavigationContainer>
   );
 };
 const OrderStackNavigator = createStackNavigator();
@@ -105,7 +103,7 @@ const ShopNavigator = () => {
     }}>
       <ShopDrawerNavigator.Screen
         name="Products"
-        component={ProductsNavigator}
+        component={Authnavigator}
         options={{
             drawerIcon:props=>(
                 <Ionicons 
@@ -152,7 +150,7 @@ const Authnavigator=()=>{
       <AuthStackNavigator.Screen
       name="Auth"
       component={AuthScreen}
-      // options={}
+      options={authScreenOptions}
       />
     </AuthStackNavigator.Navigator>
   );

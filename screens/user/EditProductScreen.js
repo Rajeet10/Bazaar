@@ -115,14 +115,16 @@ const EditProductScreen = (props) => {
           });
         }, [submitHandler]);
 
-        const inputChangeHandler=useCallback((inputIdentifier,inputValue,inputValidity)=>{
+        const inputChangeHandler=useCallback(
+          (inputIdentifier,inputValue,inputValidity)=>{
           dispatchFormState({
             type:FORM_INPUT_UPDATE,
              value:inputValue,
              isValid:inputValidity,
              input:inputIdentifier
             });
-        },[dispatchFormState]
+        },
+        [dispatchFormState]
         );
 
   if(isLoading){
