@@ -102,15 +102,12 @@ const ShopDrawerNavigator = createDrawerNavigator();
 const ShopNavigator = () => {
  const dispatch = useDispatch();
   return (
-      <NavigationContainer>
     <ShopDrawerNavigator.Navigator
     drawerContent={props=>{
       return(
         <View style={{flex:1,paddingTop:20}}>
-          <SafeAreaView forceInset={{top:'always',horizontal:'never'}}>
-          <DrawerItemList 
-          {...props}
-          />
+          <SafeAreaView forceInset={{ top: 'always', horizontal: 'never' }}>
+          <DrawerItemList {...props}/>
           <Button
           title="Logout"
           color={Colors.primary}
@@ -118,15 +115,16 @@ const ShopNavigator = () => {
             dispatch(authActions.logout());
             // props.navigation.navigate('Auth');
           }}
-          />
+            />
           </SafeAreaView>
 
         </View>
       );
     }}
-    drawerContentOptions={{
-        activeTintColor:Colors.primary
-    }}>
+  drawerContentOptions={{
+    activeTintColor:Colors.primary
+}}
+  >
       <ShopDrawerNavigator.Screen
         name="Products"
         component={ProductsNavigator}
@@ -165,7 +163,6 @@ const ShopNavigator = () => {
       }}
       />
     </ShopDrawerNavigator.Navigator>
-    </NavigationContainer>
   );
 };
 const AuthStackNavigator=createStackNavigator();
