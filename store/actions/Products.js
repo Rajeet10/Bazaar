@@ -82,7 +82,7 @@ export const updateProduct=(id,title,description,imageUrl)=>{
 
         dispatch({
             type:UPDATE_PRODUCT,
-            pd:id,
+            pid:id,
             productData:{
                 title,
                 description,
