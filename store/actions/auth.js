@@ -51,7 +51,6 @@ export const signup=(email,password)=>{
             }
         }
         const resData=await response.json();
-        console.log(resData);
 
         dispatch(authenticate(
             resData.localId,
