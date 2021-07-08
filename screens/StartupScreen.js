@@ -22,8 +22,9 @@ const expirationDate=new Date(expiryDate);
     props.navigation.navigate('Auth');
     return;
  }
+ const expirationTime=expirationDate.getTime()=new Date().getTime();
  props.navigation.navigate('Shop');
- dispatch(authActions.authenticate(userId,token));
+ dispatch(authActions.authenticate(userId,token,expirationTime));
 }; 
 tryLogin();
 
