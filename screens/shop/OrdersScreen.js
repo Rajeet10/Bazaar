@@ -73,7 +73,7 @@ export const screenOptions=navData=>{
                 onPress={()=>{
                     navData.navigation.toggleDrawer();
                 }}
-                />
+                /> 
     
             </HeaderButtons>
         ),
