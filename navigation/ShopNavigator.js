@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
-import { Platform } from "react-native";
+import { Platform,View,Button,SafeAreaView } from "react-native";
 import ProductsOverviewScreen, {
   screenOptions as productsOverViewScreenOptions,
 } from "../screens/shop/ProductsOverViewScreen";
@@ -14,7 +14,7 @@ import CartScreen, {
 import OrdersScreen, {
   screenOptions as ordersScreenOptions,
 } from "../screens/shop/OrdersScreen";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator,DrawerItemList } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../screens/user/UserProductsScreen";
@@ -23,6 +23,8 @@ import { createSwitchNavigator } from "react-navigation";
 import AuthScreen,{screenOptions as authScreenOptions} from "../screens/user/AuthScreen";
 import { createAppContainer } from "react-navigation";
 import StartupScreen from "../screens/StartupScreen";
+import { useDispatch } from "react-redux";
+import * as authActions from '../store/actions/auth';
 
 
 
@@ -97,15 +99,36 @@ const AdminNavigator = () => {
 const ShopDrawerNavigator = createDrawerNavigator();
 
 const ShopNavigator = () => {
+ const dispatch = useDispatch();
   return (
       <NavigationContainer>
     <ShopDrawerNavigator.Navigator
+    drawerContent={props=>{
+      return(
+        <View style={{flex:1,paddingTop:20}}>
+          <SafeAreaView forceInset={{top:'always',horizontal:'never'}}>
+          <DrawerItemList 
+          {...props}
+          />
+          <Button
+          title="Logout"
+          color={Colors.primary}
+          onPress={()=>{
+            dispatch(authActions.logout());
+            props.navigation.navigate('Auth');
+          }}
+          />
+          </SafeAreaView>
+
+        </View>
+      );
+    }}
     drawerContentOptions={{
         activeTintColor:Colors.primary
     }}>
       <ShopDrawerNavigator.Screen
         name="Products"
-        component={Authnavigator}
+        component={ProductsNavigator}
         options={{
             drawerIcon:props=>(
                 <Ionicons 
