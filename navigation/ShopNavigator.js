@@ -1,5 +1,5 @@
-import { createStackNavigator } from "@react-navigation/stack";
 import React from "react";
+import { createStackNavigator } from "@react-navigation/stack";
 import { Platform,View,Button,SafeAreaView } from "react-native";
 import ProductsOverviewScreen, {
   screenOptions as productsOverViewScreenOptions,
@@ -21,7 +21,6 @@ import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../
 import EditProductScreen,{screenOptions as editProductScreenOptions} from "../screens/user/EditProductScreen";
 import { createSwitchNavigator } from "react-navigation";
 import AuthScreen,{screenOptions as authScreenOptions} from "../screens/user/AuthScreen";
-import { createAppContainer } from "react-navigation";
 import StartupScreen from "../screens/StartupScreen";
 import { useDispatch } from "react-redux";
 import * as authActions from '../store/actions/auth';
@@ -32,7 +31,9 @@ const defaultNavOptions = {
   headerStyle: {
     backgroundColor: Platform.OS === "android" ? Colors.primary : "",
   },
-  headerTitleStyle: "open-sans-bold",
+  headerTitleStyle: {
+    fontFamily:'open-sans-bold'
+  },
   headerTintColor: Platform.OS === "android" ? "white" : "",
   headerBackTitleStyle: {
     fontFamily: "open-sans",
@@ -42,7 +43,7 @@ const defaultNavOptions = {
 
 const ProductStackNavigator = createStackNavigator();
 
-const ProductsNavigator = () => {
+export const ProductsNavigator = () => {
   return (
       <ProductStackNavigator.Navigator screenOptions={defaultNavOptions}>
         <ProductStackNavigator.Screen
