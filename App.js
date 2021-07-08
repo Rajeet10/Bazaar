@@ -9,6 +9,10 @@ import ordersReducer from './store/reducers/orders';
 import ReduxThunk from 'redux-thunk';
 import authReducer from './store/reducers/auth';
 import AppNavigator from './navigation/AppNavigator';
+import { LogBox} from "react-native";
+
+LogBox.ignoreAllLogs();
+
 
 
 const rootReducer=combineReducers({

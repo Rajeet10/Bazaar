@@ -6,7 +6,7 @@ import Colors from '../../constants/Colors';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch } from 'react-redux';
 import * as authActions from '../../store/actions/auth';
-import { set } from 'react-native-reanimated';
+
 
 
 const FORM_INPUT_UPDATE='FORM_INPUT_UPDATE';
@@ -80,7 +80,7 @@ const AuthScreen = props=>{
         setIsLoading(true);
         try{
             await dispatch(action);
-            props.navigation.navigate('Shop');
+            // props.navigation.navigate('Shop');
         }catch(err){
             setError(err.message);
             setIsLoading(false);
