@@ -27,6 +27,7 @@ export const deleteProduct=productId=>{
 export const createProduct=(title,description,imageUrl,price)=>{
     return async (dispatch,getState)=>{
         const token=getState().auth.token;
+        const userId=getState().auth.userId;
         //async code
       const response=await  fetch(`https://bazaar-316b7-default-rtdb.firebaseio.com/products.json?auth=${token}`,{
             method:'POST',
@@ -37,7 +38,8 @@ export const createProduct=(title,description,imageUrl,price)=>{
                 title,
                 description,
                 imageUrl,
-                price
+                price,
+                ownerId:userId
             })
         });
         const resData=await response.json();
@@ -51,6 +53,7 @@ export const createProduct=(title,description,imageUrl,price)=>{
                 description,
                 imageUrl,
                 price,
+                ownerId:userId
             }
         });
     };
@@ -91,7 +94,8 @@ export const updateProduct=(id,title,description,imageUrl)=>{
  }
 
  export const fetchProducts=()=>{
-     return async dispatch=>{
+     return async (dispatch,getState)=>{
+        const userId=getState().auth.userId;
         
         //async code
         try{
@@ -115,7 +119,12 @@ export const updateProduct=(id,title,description,imageUrl)=>{
                 )
             );
         }
-         dispatch({type:SET_PRODUCTS,products:loadedProducts})
+         dispatch({
+             type:SET_PRODUCTS,
+             products:loadedProducts,
+             userProducts:loadedProducts.filter(prod=>prod.ownerId===userId)
+            
+            });
         }
         catch(err){
             //send to custom analytics error
