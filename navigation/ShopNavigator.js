@@ -19,9 +19,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import UserProductsScreen,{screenOptions as userProductsScreenOptions} from "../screens/user/UserProductsScreen";
 import EditProductScreen,{screenOptions as editProductScreenOptions} from "../screens/user/EditProductScreen";
-import { createSwitchNavigator } from "react-navigation";
 import AuthScreen,{screenOptions as authScreenOptions} from "../screens/user/AuthScreen";
-import StartupScreen from "../screens/StartupScreen";
 import { useDispatch } from "react-redux";
 import * as authActions from '../store/actions/auth';
 
@@ -43,7 +41,7 @@ const defaultNavOptions = {
 
 const ProductStackNavigator = createStackNavigator();
 
-export const ProductsNavigator = () => {
+const ProductsNavigator = () => {
   return (
       <ProductStackNavigator.Navigator screenOptions={defaultNavOptions}>
         <ProductStackNavigator.Screen
@@ -77,6 +75,7 @@ const OrdersNavigator = () => {
     </OrderStackNavigator.Navigator>
   );
 };
+
 const AdminStackNavigator = createStackNavigator();
 
 const AdminNavigator = () => {
@@ -99,7 +98,7 @@ const AdminNavigator = () => {
 
 const ShopDrawerNavigator = createDrawerNavigator();
 
-const ShopNavigator = () => {
+export const ShopNavigator = () => {
  const dispatch = useDispatch();
   return (
     <ShopDrawerNavigator.Navigator
@@ -165,9 +164,10 @@ const ShopNavigator = () => {
     </ShopDrawerNavigator.Navigator>
   );
 };
-const AuthStackNavigator=createStackNavigator();
 
-const Authnavigator=()=>{
+AuthStackNavigator=createStackNavigator();
+
+export const Authnavigator=()=>{
   return(
     <AuthStackNavigator.Navigator screenOptions={defaultNavOptions}>
       <AuthStackNavigator.Screen
@@ -179,15 +179,14 @@ const Authnavigator=()=>{
   );
 }
 
-const MainNavigator=createSwitchNavigator({
-  Startup:StartupScreen,
-  Auth:Authnavigator,
-  Shop:ShopNavigator,
+// const MainNavigator=createSwitchNavigator({
+//   Startup:StartupScreen,
+//   Auth:Authnavigator,
+//   Shop:ShopNavigator,
   
-},{
-  initialRouteName:"Auth"
-});
+// },{
+//   initialRouteName:"Auth"
+// });
 
 export default ShopNavigator;
 // export default createAppContainer(MainNavigator); 
-// export default MainNavigator;
